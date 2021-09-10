@@ -1,14 +1,9 @@
-"""Tiles, number swapping game.
-Exercises
-1. Track a score by the number of tile moves.
-2. Permit diagonal squares as neighbors.
-3. Respond to arrow keys instead of mouse clicks.
-4. Make the grid bigger.
-"""
+#Tiles, number swapping game.
+
 
 from random import *
 from turtle import *
-
+#The link to the module https://pypi.org/project/freegames/
 from freegames import floor, vector
 
 tiles = {}
@@ -19,9 +14,8 @@ neighbors = [
     vector(0, -100),
 ]
 
-
+#This part of code loads titels and scramble
 def load():
-    "Load tiles and scramble."
     count = 1
 
     for y in range(-200, 200, 100):
@@ -42,9 +36,8 @@ def load():
             tiles[mark] = number
             mark = spot
 
-
+#We are drawing a white square with black outline and number
 def square(mark, number):
-    "Draw white square with black outline and number."
     up()
     goto(mark.x, mark.y)
     down()
@@ -63,9 +56,8 @@ def square(mark, number):
 
     write(number, font=('Arial', 60, 'normal'))
 
-
+#We are swaping tiles and empty squares
 def tap(x, y):
-    "Swap tile and empty square."
     x = floor(x, 100)
     y = floor(y, 100)
     mark = vector(x, y)
@@ -80,9 +72,8 @@ def tap(x, y):
             tiles[mark] = None
             square(mark, None)
 
-
+#Drawing titels
 def draw():
-    "Draw all tiles."
     for mark in tiles:
         square(mark, tiles[mark])
     update()
